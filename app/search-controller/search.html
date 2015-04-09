@@ -1,0 +1,26 @@
+<div class="alert alert-danger alert-dismissable" style="margin-top: 30px;" ng-show="model.errorMessage != undefined">
+	<button type="button" class="close" datadismiss="alert" ariahidden="true">&times;</button>
+	<strong>Error!</strong>
+	<br />
+	{{model.errorMessage}}
+</div>
+
+<div class="well" style="margin-top:30px;">
+	<input type="text" placeholder="Enter your query" ng-model="model.query" class="form-control" onkeypress="return checkQueryInput()" />
+	<button class="btn btn-danger" ng-click="sendQuery()" ng-disabled="model.isAjaxInProgress">Search</button>
+	<img src="/img/ajax-loader.gif" ng-show="model.isAjaxInProgress"/>
+</div>
+
+<div style="margin-top: 30px">
+	<div ng-show="model.allQueries.length == 0">
+		No Searches have been done yet!
+	</div>
+	<div ng-show="model.allQueries.length == 0">
+		<table style="width: 100%" class="table table-stripped">
+			<tr ng-repeat="query in model.allQueries">
+				<td>{{query.search}}</td>
+				<td><button class="btn btn-danger" ng-click="delete(query.searchId)" ng-disabled="model.isAjaxInProgress">Delete</button></td>
+			</tr>
+		</table>
+	</div>
+</div>
